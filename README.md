@@ -1,5 +1,8 @@
 <h1>Binary</h1>
 
+Copyright (C) 2020 Roshankumar Bhamare
+www.linkedin.com/in/roshankumarbhamare
+
 It is a single player digital number system game in c with PDcurses.
 
 The game is developed and compiled on Windows_NT x64 10.0.18363 OS with Visual Studio Code (Version 1.45.0).
