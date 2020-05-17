@@ -1,0 +1,1 @@
+gcc main.c binaryfunctions.c C:\MinGW64\x86_64-w64-mingw32\include\pdcurs36\wincon\pdcurses.a -o binary
