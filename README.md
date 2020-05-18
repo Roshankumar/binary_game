@@ -3,6 +3,8 @@
 Copyright (C) 2020 Roshankumar Bhamare<br>
 www.linkedin.com/in/roshankumarbhamare
 
+```For windows users executable (binary.exe) is provided.```
+
 ### Description
 
 * It is a single player digital number system game in c with PDcurses.
