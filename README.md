@@ -35,6 +35,6 @@ The make(.bat) file is present in folder, to compile code by a command from term
 ![Win game](doc/win_game.png)
 
 ### Useful links
-* [Decimal to binary conversion](https://www.mathsisfun.com/binary-decimal-hexadecimal-converter.html)
+* [Decimal to binary conversion](http://binaryupdates.com/number-system-in-embedded-programming/)
 * [For more information about PDcurses](https://pdcurses.org/)
 * [Original PDcurses repos](https://github.com/wmcbrine/PDCurses/tree/master/pdcurses)
