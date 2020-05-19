@@ -1,7 +1,7 @@
 ﻿/* Copyright (C) 2020 Roshankumar Bhamare
  * www.linkedin.com/in/roshankumarbhamare
  * 
- * This file is part of tictactoe-ncurses
+ * This file is part of Binary
  *
  * Binary is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
