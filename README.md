@@ -1,4 +1,4 @@
-# Binary
+# Binary (v1.2)
 
 Copyright (C) 2020 Roshankumar Bhamare<br>
 www.linkedin.com/in/roshankumarbhamare
@@ -35,6 +35,8 @@ The make(.bat) file is present in folder, to compile code by a command from term
 ![Win game](doc/win_game.png)
 
 ### Useful links
+* [Video of gameplay](https://youtu.be/Xdbrw2dTckQ)
 * [Decimal to binary conversion](http://binaryupdates.com/number-system-in-embedded-programming/)
+* [Know about curses libary](https://en.wikipedia.org/wiki/Curses_(programming_library))
 * [For more information about PDcurses](https://pdcurses.org/)
 * [Original PDcurses repos](https://github.com/wmcbrine/PDCurses/tree/master/pdcurses)

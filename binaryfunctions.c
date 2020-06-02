@@ -257,7 +257,7 @@ void help(WINDOW **wins,int i)
 void about(WINDOW **wins,int i)
 {
     char label[6]={"ABOUT"};
-	char version[]={"-:Binary v1.0:-"};
+	char version[]={"-:Binary v1.2:-"};
 	char copyright[]={"Copyright (C) 2020 Roshankumar Bhamare"};
 	char license1[]={"GNU GENERAL PUBLIC LICENSE"};
 	char license2[]={"Version 3"};
@@ -275,7 +275,7 @@ void about(WINDOW **wins,int i)
 	wattron(wins[i],COLOR_PAIR(1));
 	mvwprintw(wins[i],4,1,"The game is been designed by developer");
 	mvwprintw(wins[i],5,1,"to practice with PDcurses in c language.");
-	mvwprintw(wins[i],6,1,"Users valuable suggestions/comments");
+	mvwprintw(wins[i],6,1,"Players valuable suggestions/comments");
 	mvwprintw(wins[i],7,1,"are always welcome.");
 	printJustified(i, 9, 0, (mainColG-28), contact1, COLOR_PAIR(1));
 	printJustified(i, 10, 0, (mainColG-28), contact2, COLOR_PAIR(1));
@@ -459,20 +459,20 @@ void gameCal()				//executing game and calculating game parameters
 	show_panel(myPanels[12]);
 	temp->hide = FALSE;
 
-	//Calling game logic
-	clock_t t; 
-    t = clock(); 
+	clock_t t;
+	
+	t = game();		//Calling game logic
 
-	game();
+    double time_taken = ((double)t)/CLOCKS_PER_SEC; // in seconds
 
-	t = clock() - t;
-    double time_taken = ((double)t)/CLOCKS_PER_SEC; // in seconds 
+	int min = time_taken/60;
+	double sec = modOfDouble(time_taken);
 
 	noecho();
 
 	++gameCount;
 	
-	time = calTime(time_taken);
+	//time = calTime(time_taken);
 	werase(myWins[12]);
 
 	dec = convertToDeci();	//getting decimal of wrong binary input of user
@@ -516,20 +516,42 @@ void gameCal()				//executing game and calculating game parameters
 		printJustified(12,8,0,(mainColG-20), label4, COLOR_PAIR(255));
 	}
 	
-	sprintf(label5,"Game play time: %s",time);	//23 char
+	if(min <= 0)
+		sprintf(label5,"Game play time: %0.2lf seconds",sec);
+	else
+		sprintf(label5,"Game play time: %d minutes %0.2lf seconds",min,sec);
+	
 	printJustified(12,10,0,(mainColG-20), label5, COLOR_PAIR(207));
 	
 	wrefresh(myWins[12]);
 }
 
-void game()				//actual game execution
+double modOfDouble(double a) 
+{ 
+    double mod, b = 60.0000;
+    
+	if(a<0) 
+        mod = -a; 
+    else
+        mod =  a;
+      
+    while(mod >= b) 
+        mod = mod - b; 
+  
+    if(a < 0) 
+        return -mod; 
+  
+    return mod; 
+} 
+
+double game()				//actual game execution
 {	
 	#ifdef PDCURSES
 		PDC_set_blink(TRUE);			
 		PDC_set_bold(TRUE);
 	#endif
 
-	int i, j, dec = 0;
+	int i, j, dec = 0, count = 15;
 	char label[4][28] = {{"Go GO GO...!!"},{"Keep it up...!!"},{"You're almost there...!!"},{"*** Bingo...!!! ***"}};
 	char stop[] = {"Press ENTER to stop game"};
 	char replay[] = {"Restart game(s) | Quit(q)"};
@@ -553,11 +575,17 @@ void game()				//actual game execution
 	
 	int no[15] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
 
+	shuffleNumbers(no,count); 		//shuffling "no" array
+	
 	echo();
 	curs_set(TRUE);
 
+	clock_t t; 
+    t = clock(); 	//measure gameplay start time
+
 	for(j=0;j<15;j++)
 	{
+		werase(myWins[10]);
 		mvwprintw(myWins[10],0,0,"%d",no[j]);
 		wrefresh(myWins[10]);
 		wgetnstr(myWins[11],gameValue.userinput,4);
@@ -595,6 +623,8 @@ void game()				//actual game execution
 		wrefresh(myWins[7]);	
 	}
 
+	t = clock() - t;	//measure gameplay time  = start time - end time
+
 	curs_set(FALSE);
 
 	if(gameValue.score<15)
@@ -616,7 +646,26 @@ void game()				//actual game execution
 		wattroff(myWins[7], A_BLINK);
 		wrefresh(myWins[7]);
 	}
+	return t;		//returning gameplay time to called function
 }
+
+void swap(int *a, int *b) 
+{ 
+	int temp = *a; 
+	*a = *b; 
+	*b = temp; 
+} 
+
+void shuffleNumbers(int arr[], int n) 
+{ 
+	int i,j;
+	srand (time(NULL)); 
+	for (i = n-1; i > 0; i--) 
+	{ 
+		j = rand() % (i+1); 
+		swap(&arr[i], &arr[j]); 
+	} 
+} 
 
 int convertToDeci()				//function to convert unser binary input to decimal value
 {
