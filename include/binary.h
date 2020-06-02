@@ -3,7 +3,7 @@
  * 
  * This file is part of Binary
  *
- * Binary is free software: you can redistribute it and/or modify
+ * Binary is free software: you can redistribute it3 and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
@@ -65,9 +65,12 @@ void binaryInput(WINDOW **wins,int i);
 void gameResult(WINDOW **wins,int i);
 void printJustified(int i, int starty, int startx, int width, char *string, chtype color);
 void initGame();
+void swap(int *a, int *b);
+void shuffleNumbers(int arr[], int n );
+double modOfDouble(double a);
 int convertToDeci();
 void gameCal();
-void game();
+double game();
 char* calTime(double time_taken);
 char* convertToBinary(int n);
 
